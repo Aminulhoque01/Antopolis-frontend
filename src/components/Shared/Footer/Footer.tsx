@@ -15,7 +15,7 @@ const Footer = () => {
   return (
     <footer className=" text-white ">
       <div className="bg-[#880808] py-12 px-4">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           {/* Main sections */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             {/* Newsletter Section */}
@@ -179,7 +179,7 @@ const Footer = () => {
       </div>
       {/* Bottom Copyright */}
       <div className="  bg-[#A52A2A] pt-6 text-center text-sm ">
-        <div className="md:max-w-6xl mx-auto md:flex justify-between ">
+        <div className="md:max-w-5xl mx-auto md:flex justify-between ">
           <div>
             <p className="mb-2">Copyright 2025. All rights reserved.</p>
           </div>
