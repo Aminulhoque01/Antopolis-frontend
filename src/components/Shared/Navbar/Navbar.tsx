@@ -1,29 +1,35 @@
 "use client";
 
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../../../redux/store";
- 
-import { useRouter } from "next/navigation";
-import { LogOut } from "lucide-react";
-import Link from "next/link";
+ import { IoMdSearch } from "react-icons/io";
+
 
 const Navbar = () => {
    
-  const router = useRouter();
-
-  const handleLogout = () => {
-   
-    router.push("/login");
-  };
-
-   
+ 
 
   return (
-    <div className="    ">
-      <div className="w-full container flex justify-between items-center">
-        <Link href='/'><h1 className="text-xl font-bold text-white  ">Antopolis</h1></Link>
-       
-      </div>
+    <div className="bg-[#880808] ">
+           
+      
+        <div className="container flex items-center justify-between pt-10 relative">
+          <div className=" text-lg font-semibold tracking-widest !text-white">RESTAURANT</div>
+          <div className="w-[550px]">
+            <label htmlFor="search" className="sr-only">Search</label>
+            <div className="relative">
+              <input
+                id="search"
+                placeholder="Search..."
+                className="w-full rounded-full py-2 px-4 text-sm bg-white bg-opacity-90 text-black placeholder-gray-500 focus:outline-none"
+              />
+              <button
+                aria-hidden
+                className="absolute right-2 top-1/2 -translate-y-1/2  "
+              >
+                <IoMdSearch className="text-[20px] text-black"/>
+              </button>
+            </div>
+          </div>
+        </div>
     </div>
   );
 };
