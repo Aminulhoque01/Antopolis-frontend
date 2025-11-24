@@ -4,7 +4,7 @@ import image2 from "../../../assets/CustomerFeedback/image2.png";
 const CustomerFeedback = () => {
   return (
     <section className="w-full bg-white">
-      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-20 items-center px-4 sm:px-6">
+      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-20 items-center px-4 sm:px-6 justify-between">
         {/* LEFT SIDE */}
         <div className="w-full space-y-6">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
@@ -39,7 +39,7 @@ const CustomerFeedback = () => {
         </div>
 
         {/* RIGHT SIDE */}
-        <div className="w-full relative justify-self-end">
+        <div className="w-full relative ">
           <div className="relative w-fit mx-auto md:mx-0">
             {/* 🔴 Red slanted background */}
             <div className="absolute -z-10 bottom-0 right-0 w-[150px] h-[120px] sm:w-[180px] sm:h-[140px] md:w-[200px] md:h-[160px] lg:w-[220px] lg:h-[180px] bg-red-700 clip-slant"></div>

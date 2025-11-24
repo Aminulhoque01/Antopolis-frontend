@@ -11,13 +11,20 @@ import image4 from "../../../assets/image/footer4.jpg"
 import image5 from "../../../assets/image/footer5.jpg"
 import image6 from "../../../assets/image/footer6.jpg"
 
+import { FaLocationDot } from "react-icons/fa6";
+import { FaPhoneAlt } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
+import { MdOutlineUpdate } from "react-icons/md";
+
+
+
 const Footer = () => {
   return (
     <footer className=" text-white ">
       <div className="bg-[#880808] py-12 px-4">
         <div className="max-w-5xl mx-auto">
           {/* Main sections */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-5 mb-8">
             {/* Newsletter Section */}
             <div className="md:text-left  ">
               <h3 className="text-2xl font-bold mb-4 uppercase tracking-wide">
@@ -36,7 +43,7 @@ const Footer = () => {
                 />
                 <button
                   type="submit"
-                  className="absolute right-0 bottom-0 top-0      bg-red-700 hover:bg-red-800 px-6 py-2   font-semibold transition-colors"
+                  className="absolute right-0 bottom-0 top-0 bg-red-700 hover:bg-red-800 px-6 py-2 rounded-sm  font-semibold transition-colors"
                 >
                   <IoIosSend className="text-[20px] " />
                 </button>
@@ -83,20 +90,20 @@ const Footer = () => {
                 Contact Us
               </h3>
               <div className="space-y-3 text-sm">
-                <p className="flex items-center">
-                  <i className="fas fa-map-marker-alt mr-3 text-red-300"></i>
+                <p className="flex items-center gap-1">
+                  <FaLocationDot className="text-white font-bold text-[20px]"/>
                   317 W. St, PA 12345
                 </p>
-                <p className="flex items-center">
-                  <i className="fas fa-phone mr-3 text-red-300"></i>
+                <p className="flex gap-1 items-center">
+                 <FaPhoneAlt  className="text-white font-bold text-[20px]" />
                   (480) 555-0103
                 </p>
-                <p className="flex items-center">
-                  <i className="fas fa-envelope mr-3 text-red-300"></i>
+                <p className="flex gap-1 items-center">
+                  <MdEmail  className="text-white font-bold text-[20px]" />
                   m.alyoubi@4house.co
                 </p>
-                <p className="flex items-center">
-                  <i className="fas fa-clock mr-3 text-red-300"></i>
+                <p className="flex gap-1 items-center">
+                 <MdOutlineUpdate className="text-white font-bold text-[20px]"/>
                   Sun / Sat 10:00 - 6:00 PM
                 </p>
               </div>
@@ -138,37 +145,37 @@ const Footer = () => {
               </h4>
               <div className="grid grid-cols-3 gap-1 ">
                 <div
-                  className="  w-[85px] h-[80px]  "
+                  className="  w-[80px] h-[75px]  "
                   
                 >
                   <img src={image1.src} alt="" className="w-full h-full" />
                 </div>
                 <div
-                  className="  w-[85px] h-[80px]  "
+                  className="  w-[80px] h-[75px]  "
                   
                 >
                    <img src={image2.src} alt="" className="w-full h-full" />
                 </div>
                 <div
-                   className="  w-[85px] h-[80px]  "
+                   className="  w-[80px] h-[75px]  "
                    
                 >
                    <img src={image3.src} alt="" className="w-full h-full" />
                 </div>
                 <div
-                   className="  w-[85px] h-[80px]  "
+                   className="  w-[80px] h-[75px]  "
                    
                 >
                    <img src={image4.src} alt="" className="w-full h-full" />
                 </div>
                 <div
-                  className="  w-[85px] h-[80px]  "
+                  className="  w-[80px] h-[75px]  "
                    
                 >
                    <img src={image5.src} alt="" className="w-full h-full" />
                 </div>
                 <div
-                     className="  w-[85px] h-[80px]  "
+                     className="  w-[80px] h-[75px]  "
                 >
                    <img src={image6.src} alt="" className="w-full h-full" />
                 </div>
