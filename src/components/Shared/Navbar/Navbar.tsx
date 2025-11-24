@@ -1,18 +1,16 @@
 "use client";
 
- import { IoMdSearch } from "react-icons/io";
-
+import { IoMdSearch } from "react-icons/io";
 
 const Navbar = () => {
-   
- 
+  
 
   return (
     <div className="bg-[#880808] ">
            
       
-        <div className="container md:flex  items-center justify-between pt-10 relative">
-          <div className=" text-lg font-semibold tracking-widest !text-white">RESTAURANT</div>
+        <div className="container md:flex  items-center justify-between pt-10 ">
+          <div className="hidden md:block"><h1 className="text-white font-[700] text-[25px]   ">RESTAURANT</h1></div>
           <div className="md:w-[550px]">
             <label htmlFor="search" className="sr-only">Search</label>
             <div className="relative">

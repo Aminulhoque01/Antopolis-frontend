@@ -78,7 +78,7 @@ const Footer = () => {
             </div>
 
             {/* Contact Section */}
-            <div className="ml-10">
+            <div className="md:ml-10">
               <h3 className="text-sm font-bold mb-4     tracking-wide">
                 Contact Us
               </h3>
@@ -103,7 +103,7 @@ const Footer = () => {
             </div>
 
             {/* Links Section */}
-            <div className="ml-10">
+            <div className="md:ml-10">
               <h3 className="text-sm font-bold mb-4  tracking-wide">
                 Links
               </h3>
@@ -132,8 +132,8 @@ const Footer = () => {
             </div>
 
             {/* Instagram Gallery */}
-            <div className="mb-8">
-              <h4 className="text-sm font-semibold mb-4 text-center md:text-left  tracking-wide">
+            <div className="md:mb-8">
+              <h4 className="text-sm font-semibold mb-4   text-left  tracking-wide">
                 Instagram Gallery
               </h4>
               <div className="grid grid-cols-3 gap-1 ">
@@ -179,7 +179,7 @@ const Footer = () => {
       </div>
       {/* Bottom Copyright */}
       <div className="  bg-[#A52A2A] pt-6 text-center text-sm ">
-        <div className="max-w-6xl mx-auto flex justify-between ">
+        <div className="md:max-w-6xl mx-auto md:flex justify-between ">
           <div>
             <p className="mb-2">Copyright 2025. All rights reserved.</p>
           </div>
