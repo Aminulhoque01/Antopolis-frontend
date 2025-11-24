@@ -3,6 +3,7 @@
 import CustomerFeedback from "@/components/Pages/Home/CustomerFeedback";
 import HeroSection from "@/components/Pages/Home/HeroSection";
 import ProductSection from "@/components/Pages/Home/ProductSection";
+import TeamSection from "@/components/Pages/Home/TeamSection";
  
 
  
@@ -16,6 +17,7 @@ const Home = () => {
       <HeroSection  />
       <ProductSection/>
       <CustomerFeedback/>
+      <TeamSection/>
     </section>
   );
 };
