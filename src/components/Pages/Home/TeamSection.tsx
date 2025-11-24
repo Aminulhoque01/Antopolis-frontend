@@ -13,7 +13,7 @@ export default function TeamSection() {
   return (
     <section className="w-full bg-white">
       {/* Top Banner */}
-      <div className="w-full bg-[#AD1519D9] h-[360px] py-16 text-center text-white">
+      <div className="w-full bg-[#AD1519D9]  h-[360px] py-16 text-center text-white">
         <h2 className="text-3xl font-bold mb-2">Team Member</h2>
         <p className="max-w-xl mx-auto opacity-90">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius sed
@@ -22,7 +22,7 @@ export default function TeamSection() {
       </div>
 
       {/* Team Cards */}
-      <div className="max-w-6xl mx-auto py-10 -mt-40 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 relative z-10">
+      <div className="max-w-5xl mx-auto py-10 -mt-40 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 relative z-10">
         {members.map((m, i) => (
           <div
             key={i}
