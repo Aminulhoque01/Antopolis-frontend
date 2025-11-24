@@ -11,9 +11,9 @@ const Navbar = () => {
     <div className="bg-[#880808] ">
            
       
-        <div className="container flex items-center justify-between pt-10 relative">
+        <div className="container md:flex  items-center justify-between pt-10 relative">
           <div className=" text-lg font-semibold tracking-widest !text-white">RESTAURANT</div>
-          <div className="w-[550px]">
+          <div className="md:w-[550px]">
             <label htmlFor="search" className="sr-only">Search</label>
             <div className="relative">
               <input

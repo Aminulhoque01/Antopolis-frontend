@@ -10,8 +10,8 @@ const HeroSection = () => {
   const thumbs = [HERO_IMAGE, HERO_IMAGE, HERO_IMAGE, HERO_IMAGE];
   return (
     <section className="bg-[#880808] relative">
-      <div className="absolute -left-40 -top-40 w-[520px] h-[520px] rounded-full bg-[#A52A2A] opacity-80 pointer-events-none"></div>
-      <div className="absolute right-[-120px] top-24 w-[420px] h-[420px] rounded-full bg-[#A52A2A] opacity-70 pointer-events-none"></div>
+      <div className="absolute -left-40 -top-40 md:w-[520px] md:h-[520px] rounded-full bg-[#A52A2A] opacity-80 pointer-events-none"></div>
+      <div className="absolute right-[-120px] top-24 md:w-[420px] md:h-[420px] rounded-full bg-[#A52A2A] opacity-70 pointer-events-none"></div>
 
       <div className="max-w-full mx-auto px-6 py-14 md:py-20 ">
         <div className="flex flex-col-reverse md:flex-row items-center gap-6 md:gap-12">
