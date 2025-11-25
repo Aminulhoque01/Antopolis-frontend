@@ -50,32 +50,32 @@ const Footer = () => {
               </form>
               <div className="flex space-x-3">
                 <a
-                  href="#"
+                  href="https://www.pinterest.com/"
                   className="text-2xl hover:text-red-300 transition-colors"
                 >
                   <FaPinterest />
                  
                 </a>
                 <a
-                  href="#"
+                  href="https://x.com/"
                   className="text-2xl hover:text-red-300 transition-colors"
                 >
                   <FaTwitterSquare />
                 </a>
                 <a
-                  href="#"
+                  href="https://www.facebook.com/login"
                   className="text-2xl hover:text-red-300 transition-colors"
                 >
                   <FaFacebook />
                 </a>
                 <a
-                  href="#"
+                  href="https://www.youtube.com/"
                   className="text-2xl hover:text-red-300 transition-colors"
                 >
                   <FaYoutube />
                 </a>
                 <a
-                  href="#"
+                  href="https://www.instagram.com/"
                   className="text-2xl hover:text-red-300 transition-colors"
                 >
                   <FaInstagram />

@@ -6,7 +6,7 @@ import HERO_IMAGE1 from "../../../assets/resturent/resturent1.png";
 import HERO_IMAGE2 from "../../../assets/resturent/resturent2.png";
 import HERO_IMAGE3 from "../../../assets/resturent/resturent3.png";
 import HERO_IMAGE4 from "../../../assets/resturent/resturent4.png";
-
+import { IoMdSearch } from "react-icons/io";
 const HeroSection = () => {
   const [active, setActive] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -39,9 +39,27 @@ const HeroSection = () => {
   return (
     <section className="bg-[#880808] relative">
       <div className="absolute -left-40 -top-40 md:w-[520px] md:h-[520px] rounded-full bg-[#A52A2A] opacity-80 pointer-events-none"></div>
-      <div className="absolute right-[-120px] top-24 md:w-[420px] md:h-[420px] rounded-full bg-[#A52A2A] opacity-70 pointer-events-none"></div>
-
-      <div className="max-w-full mx-auto px-6 py-14 ">
+      <div className="absolute right-[-120px] bottom-0 md:w-[420px] md:h-[420px] rounded-full bg-[#A52A2A] opacity-70 pointer-events-none"></div>
+       <div className="container md:flex  items-center justify-between  ">
+                 <div className="hidden md:block"><h1 className="text-white font-[700] text-[22px] absolute  ">RESTAURANT</h1></div>
+                 <div className="md:w-[550px]  pt-10">
+                   <label htmlFor="search" className="sr-only">Search</label>
+                   <div className="relative ">
+                     <input
+                       id="search"
+                       placeholder="Search..."
+                       className="w-full rounded-full py-2 px-4 text-sm bg-white bg-opacity-90 text-black placeholder-gray-500 focus:outline-none"
+                     />
+                     <button
+                       aria-hidden
+                       className="absolute right-2 top-1/2 -translate-y-1/2  "
+                     >
+                       <IoMdSearch className="text-[20px] text-black"/>
+                     </button>
+                   </div>
+                 </div>
+               </div>
+      <div className="max-w-full mx-auto px-6 py-5 ">
         <div className="flex flex-col-reverse md:flex-row items-center gap-6 md:gap-12">
           {/* Left text column */}
           <div className="w-full md:w-1/2">
@@ -65,7 +83,7 @@ const HeroSection = () => {
                 <div
                   key={i}
                   onClick={() => setActive(i)}
-                  className="w-[182.5098971276571px] h-[197.32290143325113px] rounded-full overflow-hidden cursor-pointer "
+                  className="thumb rounded-full  cursor-pointer "
                 >
                   <img
                     src={item.src}
@@ -102,3 +120,6 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
+
+
+
