@@ -8,7 +8,7 @@ import { toast } from "sonner";
 import Cookies from "js-cookie";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: ``,
+  baseUrl: `https://antopolis-backend-kappa.vercel.app/api/v1/`,
   prepareHeaders: (headers) => {
     const token = Cookies.get("token");
 
@@ -53,6 +53,6 @@ const baseQueryWithRefreshToken: BaseQueryFn<
 export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: baseQueryWithRefreshToken,
-  tagTypes: ["company", "MyJob", "SavedJobs", "MYprofile","blog"],
+  tagTypes: ["product"],
   endpoints: () => ({}),
 });
