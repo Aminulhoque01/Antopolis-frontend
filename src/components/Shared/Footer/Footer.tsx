@@ -35,11 +35,11 @@ const Footer = () => {
                 <br />
                 Get discount 25% off
               </p>
-              <form className="flex flex-col sm:flex-row gap-1 mb-6 relative">
+              <form className="flex flex-col sm:flex-row gap-1 mb-6 relative  ">
                 <input
                   type="email"
                   placeholder="Enter Your Email"
-                  className="flex-1 px-4 py-2 text-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-red-400"
+                  className="flex-1 px-4 py-2 text-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-red-400 w-[20%]"
                 />
                 <button
                   type="submit"
@@ -145,37 +145,37 @@ const Footer = () => {
               </h4>
               <div className="grid grid-cols-3 gap-1 ">
                 <div
-                  className="  w-[80px] h-[75px]  "
+                  className="  w-[70px] h-[75px]  "
                   
                 >
                   <img src={image1.src} alt="" className="w-full h-full" />
                 </div>
                 <div
-                  className="  w-[80px] h-[75px]  "
+                  className="  w-[70px] h-[75px]  "
                   
                 >
                    <img src={image2.src} alt="" className="w-full h-full" />
                 </div>
                 <div
-                   className="  w-[80px] h-[75px]  "
+                   className="  w-[70px] h-[75px]  "
                    
                 >
                    <img src={image3.src} alt="" className="w-full h-full" />
                 </div>
                 <div
-                   className="  w-[80px] h-[75px]  "
+                   className="  w-[70px] h-[75px]  "
                    
                 >
                    <img src={image4.src} alt="" className="w-full h-full" />
                 </div>
                 <div
-                  className="  w-[80px] h-[75px]  "
+                  className="  w-[70px] h-[75px]  "
                    
                 >
                    <img src={image5.src} alt="" className="w-full h-full" />
                 </div>
                 <div
-                     className="  w-[80px] h-[75px]  "
+                     className="  w-[70px] h-[75px]  "
                 >
                    <img src={image6.src} alt="" className="w-full h-full" />
                 </div>

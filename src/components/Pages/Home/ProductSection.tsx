@@ -4,6 +4,12 @@ import {
   useGetProductsQuery,
   useCreateProductsMutation,
 } from "@/redux/features/products/product";
+import toast from "react-hot-toast";
+
+import {
+  useAddCategoryMutation,
+  useGetCategoryQuery,
+} from "@/redux/features/category/categoryApi";
 
 const ProductSection = () => {
   const [activeTab, setActiveTab] = useState("All");
@@ -24,16 +30,12 @@ const ProductSection = () => {
   const { data, isLoading, isFetching } = useGetProductsQuery({});
   const product = data?.data?.data || [];
 
-  const categories = [
-    "All",
-    ...Array.from(
-      new Set(
-        product.flatMap((item: any) =>
-          Array.isArray(item.category) ? item.category : [item.category]
-        )
-      )
-    ),
-  ];
+  const [addCategory] = useAddCategoryMutation();
+
+  const { data: category } = useGetCategoryQuery({});
+  const cates = category?.data;
+
+  const categories = ["All", ...new Set(cates?.map((item: any) => item.name))];
 
   const filteredDishes =
     activeTab === "All"
@@ -84,9 +86,9 @@ const ProductSection = () => {
           </p>
         </div>
 
-        <div className="flex justify-between mb-6">
+        <div className="md:flex justify-between mb-6">
           {/* CATEGORY BUTTONS */}
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 ">
             {categories.map((tab: any) => (
               <button
                 key={tab}
@@ -120,16 +122,16 @@ const ProductSection = () => {
         </div>
 
         {/* PRODUCT GRID */}
-        <div className="grid grid-cols-3 gap-5">
+        <div className="grid md:grid-cols-3 gap-5">
           {filteredDishes.map((item: any) => (
-            <div key={item._id} className="bg-gray-50 p-4 rounded-lg shadow">
+            <div key={item._id} className="bg-gray-50  rounded-lg shadow">
               <img
                 src={item.image}
-                className="w-full h-40 object-cover rounded"
+                className="w-full h-40 object-cover rounded hover:scale-105 cursor-pointer"
               />
               <div className="sm:p-4">
                 <div className="flex justify-between mb-3">
-                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 line-clamp-2">
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 ">
                     {item.name}
                   </h3>
                   <span className="bg-[#F03328] p-2 text-white font-medium rounded-full">
@@ -137,13 +139,13 @@ const ProductSection = () => {
                   </span>
                 </div>
 
-                <div className="flex   items-center justify-between mb-2 sm:mb-3">
+                <div className="flex  items-center justify-between mb-2 sm:mb-3">
                   <div className="flex items-center gap-2">
                     {renderStars(item.rating)}
                   </div>
 
                   <span className="text-base sm:text-lg font-bold text-gray-900">
-                    {item.price}
+                    $ {item.price}
                   </span>
                 </div>
               </div>
@@ -155,11 +157,11 @@ const ProductSection = () => {
       {/*  FOOD MODAL */}
       {showFoodModal && (
         <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center">
-          <div className="bg-white p-6 rounded-lg w-80">
+          <div className="bg-[rgba(173,173,173,0.4)] backdrop-blur-sm border border-gray-200 p-6 rounded-lg w-80">
             <h2 className="text-lg font-bold mb-4">Add Food</h2>
 
             <input
-              className="border w-full p-2 mb-2"
+              className="border   w-full p-2 mb-2 rounded-[30px]"
               placeholder="Food Name"
               value={foodData.name}
               onChange={(e) =>
@@ -168,7 +170,7 @@ const ProductSection = () => {
             />
 
             <input
-              className="border w-full p-2 mb-2"
+              className="border    w-full p-2 mb-2 rounded-[30px]"
               placeholder="Price"
               value={foodData.price}
               onChange={(e) =>
@@ -177,7 +179,7 @@ const ProductSection = () => {
             />
 
             <input
-              className="border w-full p-2 mb-2"
+              className="border  w-full p-2 mb-2 rounded-[30px]"
               placeholder="Rating"
               value={foodData.rating}
               onChange={(e) =>
@@ -186,8 +188,8 @@ const ProductSection = () => {
             />
 
             <input
-              className="border w-full p-2 mb-2"
-              placeholder="Category (comma separated)"
+              className="border   w-full p-2 mb-2 rounded-[30px]"
+              placeholder="Category "
               value={foodData.category}
               onChange={(e) =>
                 setFoodData({ ...foodData, category: e.target.value })
@@ -195,7 +197,7 @@ const ProductSection = () => {
             />
 
             <input
-              className="border w-full p-2 mb-2"
+              className="border  text-black w-full p-2 mb-2 rounded-[30px]"
               placeholder="Image URL"
               value={foodData.image}
               onChange={(e) =>
@@ -212,7 +214,7 @@ const ProductSection = () => {
               </button>
 
               <button
-                className="px-3 py-1 bg-black text-white rounded"
+                className="px-3 py-1 bg-[#F03328] text-white rounded "
                 onClick={async () => {
                   try {
                     await addFood({
@@ -233,10 +235,10 @@ const ProductSection = () => {
 
                     setShowFoodModal(false);
 
-                    alert("Food Added ✅");
+                    toast("Food Added Successfully");
                   } catch (err) {
                     console.log(err);
-                    alert("Failed ❌");
+                    toast("Failed Added fail");
                   }
                 }}
               >
@@ -250,11 +252,11 @@ const ProductSection = () => {
       {/*  CATEGORY MODAL */}
       {showCategoryModal && (
         <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center">
-          <div className="bg-white p-6 rounded-lg w-80">
+          <div className="bg-[rgba(173,173,173,0.4)] backdrop-blur-sm border border-gray-200bg-white p-6 rounded-lg w-80">
             <h2 className="text-lg font-bold mb-4">Add Category</h2>
 
             <input
-              className="border w-full p-2 mb-2"
+              className="border w-full p-2 mb-2 rounded-[30px]"
               placeholder="Category Name"
               value={newCategory}
               onChange={(e) => setNewCategory(e.target.value)}
@@ -268,11 +270,24 @@ const ProductSection = () => {
                 Cancel
               </button>
               <button
-                className="px-3 py-1 bg-black text-white rounded"
-                onClick={() => {
-                  alert(`Category Added: ${newCategory}`);
-                  setNewCategory("");
-                  setShowCategoryModal(false);
+                className="px-3 py-1 bg-[#F03328] text-white rounded"
+                onClick={async () => {
+                  if (!newCategory.trim()) {
+                    toast.error("Category name required");
+                    return;
+                  }
+
+                  try {
+                    await addCategory({ name: newCategory }).unwrap();
+
+                    toast.success("Category Added Successfully");
+
+                    setNewCategory("");
+                    setShowCategoryModal(false);
+                  } catch (err) {
+                    console.log(err);
+                    toast.error("Failed to add category");
+                  }
                 }}
               >
                 Save
