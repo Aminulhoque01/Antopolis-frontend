@@ -7,6 +7,7 @@ import HERO_IMAGE3 from "../../../assets/resturent/resturent3.png";
 import HERO_IMAGE4 from "../../../assets/resturent/resturent4.png";
 import { IoMdSearch } from "react-icons/io";
 import { useGetProductsQuery } from "@/redux/features/products/product";
+import Link from "next/link";
 
 const HeroSection = () => {
   const [active, setActive] = useState(0);
@@ -86,7 +87,7 @@ const HeroSection = () => {
                 <p className="text-black p-2">Loading...</p>
               ) : filteredProducts.length > 0 ? (
                 filteredProducts.map((p:any) => (
-                  <div
+                   <div
                     key={p._id}
                     className="text-black py-2 px-4 border-b last:border-b-0 flex items-center gap-2"
                   >
@@ -96,7 +97,7 @@ const HeroSection = () => {
                       className="w-10 h-10 object-cover rounded-full"
                     />
                     <span>{p.name}</span>
-                  </div>
+                  </div> 
                 ))
               ) : (
                 <p className="text-black p-2">No products found</p>
