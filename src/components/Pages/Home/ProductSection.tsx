@@ -1,16 +1,29 @@
 "use client";
 import { useState } from "react";
-
-import { useGetProductsQuery } from "@/redux/features/products/product";
+import {
+  useGetProductsQuery,
+  useCreateProductsMutation,
+} from "@/redux/features/products/product";
 
 const ProductSection = () => {
   const [activeTab, setActiveTab] = useState("All");
+  const [showFoodModal, setShowFoodModal] = useState(false);
+  const [showCategoryModal, setShowCategoryModal] = useState(false);
+  const [newCategory, setNewCategory] = useState("");
 
-  const { data } = useGetProductsQuery({});
+  const [addFood] = useCreateProductsMutation();
+
+  const [foodData, setFoodData] = useState({
+    name: "",
+    price: "",
+    rating: "",
+    category: "",
+    image: "",
+  });
+
+  const { data, isLoading, isFetching } = useGetProductsQuery({});
   const product = data?.data?.data || [];
-  console.log(product);
 
-  // Get unique categories from your products array
   const categories = [
     "All",
     ...Array.from(
@@ -22,26 +35,6 @@ const ProductSection = () => {
     ),
   ];
 
-  const renderStars = (rating: number) => {
-    const stars = [];
-    for (let i = 1; i <= 5; i++) {
-      if (i <= rating) {
-        stars.push(
-          <span key={i} className="text-yellow-500 text-[20px]">
-            ★
-          </span>
-        );
-      } else {
-        stars.push(
-          <span key={i} className="text-gray-300 text-[20px]">
-            ★
-          </span>
-        );
-      }
-    }
-    return stars;
-  };
-
   const filteredDishes =
     activeTab === "All"
       ? product
@@ -51,46 +44,57 @@ const ProductSection = () => {
             : item.category === activeTab
         );
 
+  const renderStars = (rating: number) => {
+    const stars = [];
+    for (let i = 1; i <= 5; i++) {
+      stars.push(
+        <span
+          key={i}
+          className={`text-[20px] ${
+            i <= rating ? "text-yellow-500" : "text-gray-300"
+          }`}
+        >
+          ★
+        </span>
+      );
+    }
+    return stars;
+  };
+
+  if (isLoading || isFetching) {
+    return (
+      <div className="flex justify-center items-center h-[60vh]">
+        <div className="w-12 h-12 border-4 border-gray-300 border-t-black rounded-full animate-spin"></div>
+        <p className="text-gray-700 text-lg font-medium">Please wait...</p>
+      </div>
+    );
+  }
+
   return (
-    <section className="bg-white py-8 sm:py-12 md:py-16 lg:py-20">
-      <div className="max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-        <div className="text-center mb-6 sm:mb-8 md:mb-12">
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 sm:mb-3">
-            Our best seller dishes
+    <section className="bg-white py-12">
+      <div className="max-w-5xl mx-auto px-4">
+        <div className="max-w-3xl mx-auto text-center px-4 mb-10">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+            Our Best Seller Dishes
           </h2>
-          <p className="text-xs sm:text-sm md:text-base text-gray-600 max-w-sm sm:max-w-md md:max-w-2xl mx-auto leading-relaxed px-2">
-            Our fresh garden salad is light and refreshing. It features a mix of
-            crisp lettuce, juicy tomatoes and all dressed in your choice of
+          <p className="text-gray-600 text-base sm:text-lg">
+            Our fresh garden salad is a light and refreshing option. It features
+            a mix of crisp lettuce, juicy tomato all tossed in your choice of
             dressing.
           </p>
         </div>
 
-        <div className="flex flex-col sm:flex-row justify-between items-center mb-6 sm:mb-8 md:mb-12 gap-3 sm:gap-4">
-          {/* <div className="flex flex-wrap justify-center gap-1 sm:gap-2 md:gap-4 order-2 sm:order-1">
-            {categories.map((tab:any) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-colors flex-shrink-0 ${
-                  activeTab === tab
-                    ? "bg-black text-white"
-                    : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                }`}
-              >
-                {tab}
-              </button>
-            ))}
-          </div> */}
-
-          <div className="flex flex-wrap justify-center gap-2">
+        <div className="flex justify-between mb-6">
+          {/* CATEGORY BUTTONS */}
+          <div className="flex flex-wrap gap-2">
             {categories.map((tab: any) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
+                className={`px-3 py-1 rounded-full text-sm font-medium ${
                   activeTab === tab
                     ? "bg-black text-white"
-                    : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                    : "bg-gray-200 text-gray-700"
                 }`}
               >
                 {tab}
@@ -98,39 +102,42 @@ const ProductSection = () => {
             ))}
           </div>
 
-          <div className="flex flex-wrap justify-center sm:justify-end gap-2 sm:gap-4 order-1 sm:order-2 w-full sm:w-auto">
-            <button className="px-3 py-1.5 sm:px-4 sm:py-2 bg-black text-white rounded-full text-xs sm:text-sm font-medium hover:bg-gray-800 transition-colors flex-1 sm:flex-none">
+          <div className="flex gap-2">
+            <button
+              onClick={() => setShowFoodModal(true)}
+              className="px-4 py-2 bg-black text-white rounded-full"
+            >
               Add Food
             </button>
-            <button className="px-3 py-1.5 sm:px-4 sm:py-2 bg-black text-white rounded-full text-xs sm:text-sm font-medium hover:bg-gray-800 transition-colors flex-1 sm:flex-none">
+
+            <button
+              onClick={() => setShowCategoryModal(true)}
+              className="px-4 py-2 bg-black text-white rounded-full"
+            >
               Add Category
             </button>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
-          {filteredDishes.map((item: any, _id: any) => (
-            <div
-              key={item._id}
-              className="bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow"
-            >
-              <div className="">
-                <img
-                  src={item.image?.src || item.image}
-                  alt={item.name}
-                  className="w-full h-40 sm:h-48 md:h-56 object-cover cursor-pointer hover:scale-105 transition-all"
-                />
-              </div>
-              <div className="p-3 sm:p-4">
+        {/* PRODUCT GRID */}
+        <div className="grid grid-cols-3 gap-5">
+          {filteredDishes.map((item: any) => (
+            <div key={item._id} className="bg-gray-50 p-4 rounded-lg shadow">
+              <img
+                src={item.image}
+                className="w-full h-40 object-cover rounded"
+              />
+              <div className="sm:p-4">
                 <div className="flex justify-between mb-3">
-                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-1 sm:mb-2 line-clamp-2">
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 line-clamp-2">
                     {item.name}
                   </h3>
-                  <span className="bg-[#F03328] p-2 text-white   font-medium rounded-full">
+                  <span className="bg-[#F03328] p-2 text-white font-medium rounded-full">
                     {item.category}
                   </span>
                 </div>
-                <div className="flex items-center justify-between mb-2 sm:mb-3">
+
+                <div className="flex   items-center justify-between mb-2 sm:mb-3">
                   <div className="flex items-center gap-2">
                     {renderStars(item.rating)}
                   </div>
@@ -144,6 +151,136 @@ const ProductSection = () => {
           ))}
         </div>
       </div>
+
+      {/*  FOOD MODAL */}
+      {showFoodModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center">
+          <div className="bg-white p-6 rounded-lg w-80">
+            <h2 className="text-lg font-bold mb-4">Add Food</h2>
+
+            <input
+              className="border w-full p-2 mb-2"
+              placeholder="Food Name"
+              value={foodData.name}
+              onChange={(e) =>
+                setFoodData({ ...foodData, name: e.target.value })
+              }
+            />
+
+            <input
+              className="border w-full p-2 mb-2"
+              placeholder="Price"
+              value={foodData.price}
+              onChange={(e) =>
+                setFoodData({ ...foodData, price: e.target.value })
+              }
+            />
+
+            <input
+              className="border w-full p-2 mb-2"
+              placeholder="Rating"
+              value={foodData.rating}
+              onChange={(e) =>
+                setFoodData({ ...foodData, rating: e.target.value })
+              }
+            />
+
+            <input
+              className="border w-full p-2 mb-2"
+              placeholder="Category (comma separated)"
+              value={foodData.category}
+              onChange={(e) =>
+                setFoodData({ ...foodData, category: e.target.value })
+              }
+            />
+
+            <input
+              className="border w-full p-2 mb-2"
+              placeholder="Image URL"
+              value={foodData.image}
+              onChange={(e) =>
+                setFoodData({ ...foodData, image: e.target.value })
+              }
+            />
+
+            <div className="flex justify-end gap-2">
+              <button
+                className="px-3 py-1 bg-gray-300 rounded"
+                onClick={() => setShowFoodModal(false)}
+              >
+                Cancel
+              </button>
+
+              <button
+                className="px-3 py-1 bg-black text-white rounded"
+                onClick={async () => {
+                  try {
+                    await addFood({
+                      name: foodData.name,
+                      price: Number(foodData.price),
+                      rating: Number(foodData.rating),
+                      category: foodData.category.split(","),
+                      image: foodData.image,
+                    }).unwrap();
+
+                    setFoodData({
+                      name: "",
+                      price: "",
+                      rating: "",
+                      category: "",
+                      image: "",
+                    });
+
+                    setShowFoodModal(false);
+
+                    alert("Food Added ✅");
+                  } catch (err) {
+                    console.log(err);
+                    alert("Failed ❌");
+                  }
+                }}
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/*  CATEGORY MODAL */}
+      {showCategoryModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center">
+          <div className="bg-white p-6 rounded-lg w-80">
+            <h2 className="text-lg font-bold mb-4">Add Category</h2>
+
+            <input
+              className="border w-full p-2 mb-2"
+              placeholder="Category Name"
+              value={newCategory}
+              onChange={(e) => setNewCategory(e.target.value)}
+            />
+
+            <div className="flex justify-end gap-2">
+              <button
+                className="px-3 py-1 bg-gray-300 rounded"
+                onClick={() => setShowCategoryModal(false)}
+              >
+                Cancel
+              </button>
+              <button
+                className="px-3 py-1 bg-black text-white rounded"
+                onClick={() => {
+                  alert(`Category Added: ${newCategory}`);
+                  setNewCategory("");
+                  setShowCategoryModal(false);
+                }}
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
