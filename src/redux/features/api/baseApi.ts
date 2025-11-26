@@ -8,7 +8,7 @@ import { toast } from "sonner";
 import Cookies from "js-cookie";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: `https://antopolis-backend-kappa.vercel.app/api/v1/`,
+  baseUrl: `https://antopolis-backend-kappa.vercel.app/api/v1`,
   prepareHeaders: (headers) => {
     const token = Cookies.get("token");
 

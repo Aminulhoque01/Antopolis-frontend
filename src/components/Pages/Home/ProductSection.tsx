@@ -221,7 +221,7 @@ const ProductSection = () => {
                       name: foodData.name,
                       price: Number(foodData.price),
                       rating: Number(foodData.rating),
-                      category: foodData.category.split(","),
+                      category: foodData.category,
                       image: foodData.image,
                     }).unwrap();
 
